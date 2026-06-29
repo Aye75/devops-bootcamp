@@ -1,0 +1,16 @@
+## Origin
+Origin = server sebenar (EC2, VPS, dll)
+Cloudflare duduk depan origin — bukan ganti dia
+Origin IP mesti dilindungi — jangan dedah di DNS
+## Proxy
+Proxied (oren): trafik lalu Cloudflare edge
+  - IP origin tersembunyi
+  - DDoS protection, caching, firewall aktif
+DNS only (kelabu): trafik terus ke origin
+  - IP origin terdedah
+  - Tiada perlindungan Cloudflare
+## Tunnel
+Cloudflare Tunnel = origin tak perlu buka port 80/443
+  - Tiada inbound firewall rules
+  - Sambungan keluar sahaja (outbound only)
+  - Sesuai untuk homelab / server tanpa IP awam
