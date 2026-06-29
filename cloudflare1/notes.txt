@@ -1,0 +1,8 @@
+## Cloudflare Nameservers
+- NS1: xxxx.ns.cloudflare.com
+- NS2: yyyy.ns.cloudflare.com
+
+## URLs
+- Pages.dev public: https://yourname.pages.dev
+- Custom domain (portfolio): https://portfolio.yourdomain.com
+- Private subdomain: https://private.yourdomain.com
