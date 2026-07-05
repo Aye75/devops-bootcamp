@@ -1,1 +1,6 @@
 IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+
+## ECR Push Commands (AWS CLI / bash equivalent)
+1) aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 752986523297.dkr.ecr.ap-southeast-1.amazonaws.com
+2) sudo docker tag app:V1 752986523297.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/aye25:latest
+3) sudo docker push 752986523297.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/aye25:latest
