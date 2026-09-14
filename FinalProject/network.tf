@@ -50,7 +50,7 @@ resource "aws_route_table_association" "public" {
 }
 
 
-## Elastic IP bwh private subnet --------------------------------------
+## Elastic IP bwh private subnet ada charges. So pakai bila perlu je -------------
 resource "aws_eip" "nat" {
   ##vpc = true
   tags = {
@@ -59,7 +59,7 @@ resource "aws_eip" "nat" {
 }   
 
 ## Nat Gateway bwh private subnet ada charges. So pakai bila perlu je ------------
-/*
+
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public.id
@@ -71,7 +71,6 @@ resource "aws_nat_gateway" "nat" {
   depends_on = [aws_internet_gateway.igw]
 }
 
-*/
 
 ## Create private subnet --------------------------------------
 
@@ -93,6 +92,14 @@ resource "aws_route_table" "private" {
   }
 }   
 
+## Private route to NAT Gateway --------------------------------------
+
+resource "aws_route" "private_nat" {
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id          = aws_nat_gateway.nat.id
+}
+
 resource "aws_route_table_association" "private" {
   subnet_id      = aws_subnet.private.id
   route_table_id = aws_route_table.private.id
@@ -102,30 +109,3 @@ resource "aws_route_table_association" "private" {
 
 
 ##--------------------------------------------------------------------------------
-
-
-/*resource "aws_eip" "nat_eip" {
-  domain = "vpc"
-
-  tags = {
-    Name = "nat-eip"
-  }
-} */
-
-
-
-
-/*resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.devops_vpc.id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat.id
-  }
-
-  tags = {
-    Name = "private-rt"
-  }
-}
-
- */

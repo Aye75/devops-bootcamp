@@ -39,20 +39,20 @@ resource "aws_vpc_security_group_ingress_rule" "public_ssh" {
 
 
 ## Security Group for Private -------- #
-/*
+
 resource "aws_security_group" "private" {
-  name   = "private-sg"
+  name   = "devops-private-sg"
   vpc_id = aws_vpc.devops_vpc.id
   tags   = { Name = "private-sg" }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "private_ssh_from_public" {
+/*resource "aws_vpc_security_group_ingress_rule" "private_ssh_from_public" {
   security_group_id           = aws_security_group.private.id
   referenced_security_group_id = aws_security_group.public.id
   ip_protocol                  = "tcp"
   from_port                    = 22
   to_port                      = 22
-}
+} */
 
 resource "aws_vpc_security_group_ingress_rule" "private_internal" {
   security_group_id = aws_security_group.private.id
@@ -67,4 +67,3 @@ resource "aws_vpc_security_group_egress_rule" "private_outbound" {
   cidr_ipv4          = "0.0.0.0/0"
   ip_protocol         = "-1"
 }
-*/
