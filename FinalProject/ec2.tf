@@ -25,7 +25,7 @@ resource "aws_instance" "web_server" {
   }
 }
 
-/* blom pakai lagi elastic IP
+## blom pakai lagi elastic IP
 resource "aws_eip" "web" {
   domain   = "vpc"
   instance = aws_instance.web_server.id
@@ -34,7 +34,7 @@ resource "aws_eip" "web" {
     Name = "devops-web-eip"
   }
 }
-*/
+
 
 
 # ----- Ansible Controller (private) ----------------------------
